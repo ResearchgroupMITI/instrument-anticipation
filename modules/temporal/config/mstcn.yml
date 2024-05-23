@@ -1,0 +1,76 @@
+# ----------
+# PATH SETUP
+# ----------
+module : temporal.temporalmodule.TemporalModule
+model: mstcn.MultiStageModel
+dataset: temporal.allfeatures.AllFeatureDataset
+data_root: ../prepro
+
+# ----------
+# MODULES
+# ----------
+num_workers: 0
+output_path: logs
+min_epochs: 150
+max_epochs: 250
+use_deterministic_torch_algorithms: False
+learning_rate: 0.00003
+warmup: 50
+weight_decay: 0.1
+early_stopping: True
+early_stopping_mode: min
+early_stopping_metric: val_loss
+early_stopping_patience: 35
+early_stopping_delta: -0.0001
+save_model_mode: max
+save_model_metric: val_RightT_F1_avg_1von1
+save_best_model: True
+focal_gamma: 2.0
+loss_scale_start_value: 0.2
+loss_scale_start_value_rest: 0.2
+loss_ign_scale_value: 0.005
+lambda_pred: 1.0
+lambda_rest: 1.0
+rt_loss_scale: 1.0
+lt_loss_scale: 1.0
+phase_loss_scale: 0.1
+use_human_knowledge: False
+
+# ----------
+# WEIGHTS and BIAS
+# ----------
+do_sweep: False
+sweep_config_path: modules/temporal/config/mstcn_sweep.yml
+wandb_mode: offline  #online, offline, disabled
+subproject_name: MSTCN
+wandbprojectname: to be defined
+
+# ----------
+# MODELL
+# ----------
+out_features: 31
+mstcn_stages: 4
+mstcn_layers: 10
+mstcn_f_maps: 64
+
+# ----------
+# DATASET
+# ----------
+load_features_from_file: True
+save_features_to_file: False
+cnn_feature_dir: stems_and_preds
+segmentation_tensor_dir: yolo_segment
+yolo_anno_path: yolo_detect
+feature_save_dir: ../prepro/features_for_stage_2
+num_seg_classes: 34
+ant_delta: 3
+ant_tau: 3
+ant_gamma: 8
+ant_phase_buffer: 0
+ant_fut: 1
+
+# ----------
+# TEST SETUP
+# ----------
+testmode: False
+save_test_tensors: False

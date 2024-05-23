@@ -1,0 +1,16 @@
+#Sweep config, these can't be sweeped over
+method: 'bayes' # grid, random or bayes
+name: 'val_loss'
+goal: 'minimize'
+sweep_run_count: 1000
+
+#Params
+learning_rate: [0.0000005, 0.000005, 0.00005, 0.0005]
+weight_decay: [0.0001, 0.001, 0.01]
+loss_scale_start_value: [0.0, 0.2, 0.5, 0.8, 1.0]
+loss_scale_start_value_rest: [0.0, 0.5, 1.0]
+loss_ign_scale_value: [0.05, 0.005, 0.0005]
+
+#Model
+mstcn_stages: [1, 2, 3]
+mstcn_layers: [6, 8, 10]

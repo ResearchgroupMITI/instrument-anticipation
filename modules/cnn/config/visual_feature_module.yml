@@ -1,0 +1,53 @@
+# ----------
+# PATH SETUP
+# ----------
+module : cnn.visual_feature_backbone.FeatureExtraction
+model : cnn.ResNet50Model
+dataset : cnn.visual_feature_dataset.VisualDataset
+data_root : ../prepro/
+
+# ----------
+# MODULES
+# ----------
+num_workers: 0
+output_path: logs
+max_epochs: 50
+min_epochs: 20
+use_deterministic_torch_algorithms: False
+learning_rate: 0.0003
+batch_size: 32
+extract_features: True
+early_stopping: True
+early_stopping_mode: min
+early_stopping_metric: val_loss
+early_stopping_patience: 5
+early_stopping_delta: 0.0
+save_model_mode: min
+save_model_metric: val_loss
+save_best_model: True
+
+# ----------
+# WEIGHTS and BIAS
+# ----------
+do_sweep: False
+wandb_mode: disabled
+wandbprojectname: to be defined
+subproject_name: cnn
+
+# ----------
+# MODELL
+# ----------
+pretrained: True
+
+# ----------
+# DATASET
+# ----------
+num_features: 53
+augmentation_type: rendezvous
+num_instruments: 10
+
+# ----------
+# TEST SETUP
+# ----------
+testmode: False
+

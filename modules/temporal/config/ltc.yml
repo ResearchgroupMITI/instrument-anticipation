@@ -1,0 +1,86 @@
+# ----------
+# PATH SETUP
+# ----------
+module : temporal.temporalmodule.TemporalModule
+model: ltcontext.LTC
+dataset: temporal.allfeatures.AllFeatureDataset
+data_root: ../prepro
+
+# ----------
+# MODULES
+# ----------
+num_workers: 0
+output_path: logs
+min_epochs: 550
+max_epochs: 550
+use_deterministic_torch_algorithms: False
+learning_rate: 0.00005
+warmup: 50
+weight_decay: 0.01
+early_stopping: True
+early_stopping_mode: min
+early_stopping_metric: val_loss
+early_stopping_patience: 35
+early_stopping_delta: 0.001
+save_model_mode: max
+save_model_metric: val_weighted_F1_1von1
+save_best_model: True
+focal_gamma: 2.0
+loss_scale_start_value: 0.8
+loss_scale_start_value_rest: 0.4
+loss_ign_scale_value: 0.0005
+lambda_pred: 1.0
+lambda_rest: 1.0
+rt_loss_scale: 1.0
+lt_loss_scale: 1.0
+phase_loss_scale: 0.1
+use_human_knowledge: True
+
+# ----------
+# MODELL
+# ----------
+model_num_classes: 31
+model_input_dim: 2520
+model_attn_num_attn_heads: 1
+model_attention_dropout: 0.2
+model_ltc_conv_dilation_factor: 2
+model_ltc_windowed_attn_w: 64
+model_ltc_long_term_attn_g: 16
+model_ltc_use_instance_norm: True
+model_ltc_dropout_prob: 0.2
+model_ltc_channel_masking_prob: 0.2
+model_ltc_model_dim: 32
+model_ltc_dim_reduction: 2.0
+model_ltc_num_layers: 8
+model_ltc_num_stages: 1
+
+# ----------
+# WEIGHTS and BIAS
+# ----------
+do_sweep: False
+sweep_config_path: modules/temporal/config/ltcontext_sweep.yml
+wandb_mode: offline #online, offline, disabled
+subproject_name: LTContext
+wandbprojectname: to be defined
+
+# ----------
+# DATASET
+# ----------
+load_features_from_file: True
+save_features_to_file: False
+cnn_feature_dir: stems_and_preds
+segmentation_tensor_dir: yolo_segment
+yolo_anno_path: yolo_detect
+feature_save_dir: ../prepro/features_for_stage_2
+num_seg_classes: 34
+ant_delta: 3
+ant_tau: 3
+ant_gamma: 8
+ant_phase_buffer: 0
+ant_fut: 1
+
+# ----------
+# TEST SETUP
+# ----------
+testmode: False
+save_test_tensors: False

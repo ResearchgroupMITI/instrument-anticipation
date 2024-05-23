@@ -1,0 +1,25 @@
+#Sweep config, these can't be sweeped over
+method: 'bayes' # grid, random or bayes
+name: 'val_loss'
+goal: 'minimize'
+sweep_run_count: 1000
+
+#Module 
+learning_rate: [0.000005, 0.00005, 0.0005, 0.005]
+use_human_knowledge: [True, False]
+warmup: [30, 40, 50, 60, 70]
+weight_decay: [0.01, 0.0015, 0.001, 0.00015, 0.0001]
+focal_gamma: [1.0, 2.0, 3.0]
+loss_scale_start_value: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+loss_scale_start_value_rest: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+loss_ign_scale_value: [0.5, 0.05, 0.005, 0.0005]
+rt_loss_scale: [0.0, 0.5, 1.0]
+lt_loss_scale: [0.0, 0.5, 1.0]
+#model_attn_num_attn_heads: [1, 2, 3]
+#model_ltc_conv_dilation_factor: [2, 4, 6]
+model_ltc_windowed_attn_w: [4, 8, 16, 32, 64, 128]
+model_ltc_long_term_attn_g: [4, 8, 16, 32, 64, 128]
+model_ltc_model_dim: [32, 64, 128, 256]
+#model_ltc_dim_reduction: [2.0, 4.0]
+model_ltc_num_layers: [6, 7, 8, 9, 10, 11, 12]
+model_ltc_num_stages: [1, 2, 3, 4]
